@@ -23,7 +23,7 @@
                         <div class="d-flex justify-content-end">
                             <div class="d-flex align-items-center py-4">
                                 <a href="{{( '/profile/history/invoice') }}" class="btn mx-3">Detail Transaction<a>
-                                <a href="" class="btn btn-primary mx-3 title-button-history">Buy again</a>
+                                <a href="{{( '/shop-detail') }}" class="btn btn-primary mx-3 title-button-history">Buy again</a>
                                 <button class="btn mx-3 detail-button">...</button>
                             </div> 
                         </div>
@@ -77,7 +77,7 @@
                         <div class="d-flex justify-content-end">
                             <div class="d-flex align-items-center py-4">
                                 <a href="{{( '/profile/history/invoice') }}" class="btn mx-3">Detail Transaction<a>
-                                <a href="" class="btn btn-primary mx-3 title-button-history">Buy again</a>
+                                <a href="{{( '/shop-detail') }}" class="btn btn-primary mx-3 title-button-history">Buy again</a>
                                 <button class="btn mx-3 detail-button">...</button>
                             </div> 
                         </div>
