@@ -664,6 +664,10 @@ body.shop-detail{
     text-align: center;
 
 }
+.voucheractive{
+    border-color: var(--bs-primary);
+    box-shadow: 0 1px 8px var(--bs-primary);
+}
 .qris{
     width: 25%;
 }

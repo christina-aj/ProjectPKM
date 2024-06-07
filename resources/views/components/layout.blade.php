@@ -43,6 +43,7 @@
 
         <!-- Template Javascript -->
         <script src="{!! URL::asset('js/main.js')!!}"></script>
+        <script src="{!! URL::asset('js/nominalbutton.js')!!}"></script>
         <x-footer></x-footer>
     </body>
 </html>

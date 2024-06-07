@@ -28,28 +28,28 @@
                                 <div class="container bg-white py-4 rounded">
                                     <ul class="row nominal-voucher d-flex w-100">
                                         <li class="btn text-dark align-items-center col-sm rounded mx-4 my-4">
-                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp10.000</button>
+                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp10.000</a>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp15.000</button>
+                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp15.000</a>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp20.000</button>
+                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp20.000</a>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp25.000</button>
+                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp25.000</a>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp50.000</button>
+                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp50.000</a>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp100.000</button>
+                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp100.000</a>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp200.000</span>
+                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp200.000</a>
                                         </li>
                                         <li class="col-sm rounded mx-4 my-4">
-                                            <button class=" btn text-dark align-items-center border-primary border-2 voucher">Rp500.000</span>
+                                            <a class=" btn text-dark align-items-center border-primary border-2 voucher">Rp500.000</a>
                                         </li>
                                     </ul>
     
