@@ -168,7 +168,7 @@
                                 <div class="container bg-white mb-4 rounded py-4">
                                     <div class="justify-content-between d-flex w-100">
                                         <h5 class="mb-4">Total </h5>
-                                        <span>Rp 0</span>
+                                        <span id="total_pay_fix">Rp 0</span>
                                     </div>
                                     <a href="{{ ('/shop-detail/invoice') }}"  class="btn btn-primary border-0 border-secondary py-2 px-2 rounded text-white justify-content-center w-100">Pay Now</a>
                                 </div>
@@ -180,7 +180,7 @@
             <h1 class="fw-bold mb-0">Other Product</h1>
             <div class="vesitable">
                 <div class="owl-carousel vegetable-carousel justify-content-center">
-                    <div class="border border-primary rounded position-relative vesitable-item">
+                    {{-- <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
                             <img src="img/xl.png" class="img-fluid w-100 rounded-top" alt="">
                         </div>
@@ -257,7 +257,40 @@
                         <div class="p-2 pb-0 rounded-bottom">
                             <h4 class="justify-content-center w-100 d-flex">Indosat</h4>
                         </div>
+                    </div> --}}
+
+                    @foreach ($providerz as $provi)
+                        <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="{{ $provi->provider_logo }}" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Pulsa</div>
+                            <div class="p-2 pb-0 rounded-bottom">
+                                <h4 class="justify-content-center w-100 d-flex">{{ $provi->provider_name }}</h4>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <div class="border border-primary rounded position-relative vesitable-item">
+                        <div class="vesitable-img">
+                            <img src="img/hero-img-1.png" class="img-fluid w-100 rounded-top" alt="">
+                        </div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">PDAM</div>
+                        <div class="p-2 pb-0 rounded-bottom">
+                            <h4 class="justify-content-center w-100 d-flex">PDAM Pascabayar</h4>
+                        </div>
                     </div>
+
+                    <div class="border border-primary rounded position-relative vesitable-item">
+                        <div class="vesitable-img">
+                            <img src="img/pln.png" class="img-fluid w-100 rounded-top" alt="">
+                        </div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">PLN</div>
+                        <div class="p-2 pb-0 rounded-bottom">
+                            <h4 class="justify-content-center w-100 d-flex">PLN Prabayar</h4>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -343,6 +376,7 @@
         var total_pay = parseInt(nominal_real) - parseInt(nominal_disc_real);
 
         $('#total_pay').html("Rp " + rupiah(total_pay));
+        $('#total_pay_fix').html("Rp " + rupiah(total_pay));
 
     }
 </script>

@@ -19,7 +19,7 @@ class ShopDetailController extends Controller
         $stok_pulsa = DB::select('select * from m_pulsa');
         $stok_pulsa = DB::select('select * from m_pulsa');
         $nominal_vouchers = DB::select('select * from m_nominal_voucher');
-        $providers = DB::select('select * from m_provider');
+        $providersss = DB::select('select * from m_provider');
 
 
         // loop untuk tahu statusnya, jika ada dan statusnya siji, maka bisa dibilang tersedia (ada stok), else ya habis brow
@@ -36,6 +36,7 @@ class ShopDetailController extends Controller
 
         $data['title'] = 'Web Top up | Detail';
         $data['providers'] = $provider;
+        $data['providerz'] = $providersss;
         $data['nominal_pulsas'] = $nominal_pulsas;
         $data['nominal_vouchers'] = $nominal_vouchers;
 
