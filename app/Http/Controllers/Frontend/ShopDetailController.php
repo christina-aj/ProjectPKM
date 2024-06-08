@@ -16,20 +16,44 @@ class ShopDetailController extends Controller
         }
        
         $nominal_pulsas = DB::select('select * from m_nominal_pulsa');
+        $stok_pulsa = DB::select('select * from m_pulsa');
+        $stok_pulsa = DB::select('select * from m_pulsa');
+        $nominal_vouchers = DB::select('select * from m_nominal_voucher');
+        $providers = DB::select('select * from m_provider');
 
-        $pulsas = DB::select('select * from m_pulsa');
 
-        // $pulsas = DB::select('select * from m_pulsa where pulsa_id = ?', [$request->pulsa_id]);
-        // if(count($pulsas) > 0){
-        //     $pulsa = $pulsa[0];
-        // }
+        // loop untuk tahu statusnya, jika ada dan statusnya siji, maka bisa dibilang tersedia (ada stok), else ya habis brow
+        foreach($nominal_pulsas as $i => $nominal_pulsa){
+            if(collect($stok_pulsa)->where('nominal_pulsa_id', $nominal_pulsa->nominal_pulsa_id)->where('pulsa_status','=', 1)->count() > 0){
+                $nominal_pulsas[$i]->status_tersedia = 1;
+            }else{
+                $nominal_pulsas[$i]->status_tersedia = 0;
+            }
+        }
+
+        // dd($nominal_pulsas);
+
 
         $data['title'] = 'Web Top up | Detail';
-        $data['provider'] = $provider;
+        $data['providers'] = $provider;
         $data['nominal_pulsas'] = $nominal_pulsas;
-        $data['pulsas'] = $pulsas;
+        $data['nominal_vouchers'] = $nominal_vouchers;
 
         return view("shop-detail",$data);
+    }
+
+    public function index_pln(Request $request){
+        
+        $data['title'] = 'Web Top up PLN | Detail';
+
+        return view("shop-detail-pln",$data);
+    }
+
+    public function index_pdam(Request $request){
+        
+        $data['title'] = 'Web Top up PDAM | Detail';
+
+        return view("shop-detail-pdam",$data);
     }
 
     

@@ -5,7 +5,7 @@
         <div class="telkomsel-page d-flex position-relative mx-auto">
             <div class="rounded position-relative fruite-item border border-secondary bg-white shadow">
                 <div class="fruite-img">
-                    <img src="{{ $provider->provider_logo }}" class="img-fluid w-100 rounded-top" alt="">
+                    <img src="{{ $providers->provider_logo }}" class="img-fluid w-100 rounded-top" alt="">
                 </div>
             </div>
         </div>
@@ -56,7 +56,12 @@
                                         @foreach ($nominal_pulsas as $nominal_pulsa)   
                                             <div class="col-md-3 mb-4">
                                             {{-- <div class="btn text-dark align-items-center col-sm rounded mx-4 my-4"> --}}
+                                                @if ($nominal_pulsa->status_tersedia == 0)
+                                                    <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}')" disabled>Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }} <i class='fa fa-times ms-1 text-danger'></i></button>
+                                                @else
+                                                    
                                                 <button class="btn text-dark align-items-center border-primary border-2 voucher" onclick="set_nominal('{{ $nominal_pulsa->nominal }}')">Rp  {{ number_format($nominal_pulsa->nominal, 0, ',','.') }}</button>
+                                                @endif
                                             </div>
                                         @endforeach
                                     </div>
@@ -123,6 +128,7 @@
                             <div class="col-lg-12">
                                 <div class="container bg-white mb-4 rounded py-4">
                                     <h5>Pulsa Yang Dipilih</h5>
+                                    <input class="form-control" type="hidden" name="" id="nominal_real" value="0" readonly>
                                     <input class="form-control" type="type" name="" id="nominal" readonly>
                                 </div>
                             </div>
@@ -143,9 +149,15 @@
                                     <h5 class="mb-4">Metode Pembayaran</h5>
                                     <div class="justify-content-between w-100 border border-primary border-2 py-2 px-2 rounded d-flex align-items-center" >
                                         <img class="qris" src="img\quick-response-code-indonesia-standard-qris-seeklogo-2 1.png" alt="">
-                                        <span >Rp.0 </span>
+                                        <span id="total_pay">Rp.0 </span>
 
                                     </div>   
+                                </div>
+
+                                <div class="container bg-white mb-4 rounded py-4">
+                                    <h5 class="mb-4">Voucher Yang Di Gunakan</h5>
+                                    <input class="form-control" type="hidden" id="nominal_disc_real" value="0" readonly>
+                                    <input class="form-control" type="type" id="nominal_disc" readonly>
                                 </div>
 
                                 <div class="container bg-white mb-4 rounded py-4">
@@ -261,7 +273,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex justify-content-center">
-                    <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4">
+                    {{-- <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4">
                         <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4">
                             <img class="diskon" src="img/discount.png" alt="">
                             <span>Diskon 20 Ribu</span>
@@ -278,6 +290,14 @@
                             <img class="diskon" src="img/discount.png" alt="">
                             <span>Diskon 20 Ribu</span>
                         </button>
+                    </div> --}}
+                    <div class="d-flex align-items-center w-100 justify-content-center flex-column gap-4" data-bs-dismiss="modal">
+                        @foreach ($nominal_vouchers as $nominal_voucher)
+                        <button class="btn text-dark align-items-center border-2 border-primary w-50 d-flex justify-content-center gap-4" onclick="set_nominal_voucher('{{ $nominal_voucher->nominal_disc }}')">
+                            <img class="diskon" src="img/discount.png" alt="">
+                            <span>Diskon {{ $nominal_voucher->nominal_disc /1000 }} Ribu</span>
+                        </button>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -287,7 +307,42 @@
 
 
 <script>
+
     function set_nominal(nominal){
-        $('#nominal').val(nominal);
+        $('#nominal').val("Rp " + rupiah(nominal));
+        $('#nominal_real').val(nominal);
+
+        set_total_pay();
+    }
+
+    function set_nominal_voucher(nominal_disc){
+        var nominal_real = $('#nominal_real').val();
+
+        if(parseInt(nominal_disc) > parseInt(nominal_real)){
+            iziToast.error({
+                position: 'topCenter',
+                title: 'GAGAL',
+                message: 'Nominal voucher tidak boleh lebih besar dari nominal pulsa'
+            });
+        }
+        else{
+            
+            $('#nominal_disc').val("Rp " + rupiah(nominal_disc));
+            $('#nominal_disc_real').val(nominal_disc);
+        
+            set_total_pay();
+
+        }
+    }
+    
+
+    function set_total_pay(){
+        var nominal_real = $('#nominal_real').val();
+        var nominal_disc_real = $('#nominal_disc_real').val();
+
+        var total_pay = parseInt(nominal_real) - parseInt(nominal_disc_real);
+
+        $('#total_pay').html("Rp " + rupiah(total_pay));
+
     }
 </script>
