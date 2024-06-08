@@ -153,6 +153,8 @@
                                     </div>
 
                                     </div> -->
+
+                                    {{-- lalalala --}}
                                     @foreach ($providers as $provider)
                                         <div class="col-md-6 col-lg-4 col-xl-3">
                                             <div class="rounded position-relative fruite-item">
